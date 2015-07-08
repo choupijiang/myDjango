@@ -17,6 +17,8 @@ class UserProfile(models.Model):
     email = models.EmailField(verbose_name="Email")
     years_seniority = models.IntegerField(verbose_name="Seniority", default=0)
     date_created = models.DateField(verbose_name="Date of Birthday", auto_now_add=True)
+    def __unicode__(self):
+        return self.name
 
 class Project(models.Model):
     title = models.CharField(max_length=50, verbose_name="Title")
@@ -40,6 +42,7 @@ class Task(models.Model):
     importance = models.IntegerField(verbose_name="Importance")
     project = models.ForeignKey(Project, verbose_name="Project" ,null=True, default=None, blank=True)
     developers = models.ManyToManyField(Developer ,through="DeveloperWorkTask")
+
 
 class DeveloperWorkTask(models.Model):
     developer = models.ForeignKey(Developer)

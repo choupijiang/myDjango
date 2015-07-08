@@ -16,7 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import CreateView
-from TasksManager.models import Project, Task
+from django.views.generic import ListView
+from django.views.generic import DetailView
+from TasksManager.models import Project, Task, Developer
+from TasksManager.views.cbv.ListView import Project_list
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -32,7 +36,13 @@ urlpatterns = [
     url(r'^create_project$',
         CreateView.as_view(model=Project, template_name="create_project.html", success_url="index"),
         name='create_project'),
-    url (r'^create_task$',
+    url(r'^create_task$',
          CreateView.as_view(model=Task, template_name="create_task.html", success_url ='index'),
          name="create_task"),
+    url(r'^project_list$',Project_list.as_view(), name="project_list"),
+    url (r'^developer_list$', ListView.as_view(model=Developer, template_name="developer_list.html"),
+         name="developer_list"),
+    url (r'^task_detail_(?P<pk>\d+)$', DetailView.as_view(model=Task,
+                      template_name="task_detail.html"), name="task_detail"),
+
 ]
