@@ -11,6 +11,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='DeveloperWorkTask',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('time_elapsed_dev', models.IntegerField(default=None, null=True, verbose_name=b'Time elapsed', blank=True)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Project',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -34,15 +41,11 @@ class Migration(migrations.Migration):
             name='UserProfile',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=50, verbose_name=b'Name')),
-                ('login', models.CharField(max_length=25, verbose_name=b'Login')),
-                ('password', models.CharField(max_length=100, verbose_name=b'Password')),
-                ('phone', models.CharField(default=None, max_length=20, null=True, verbose_name=b'Phone  number', blank=True)),
-                ('last_connection', models.DateTimeField(default=None, null=True, verbose_name=b'Date of last connection', blank=True)),
+                ('name', models.CharField(max_length=50, verbose_name=b'Name', error_messages={b'required': b'You must type a name !', b'invalid': b'Wrong format.'})),
+                ('phone', models.CharField(default=None, max_length=20, null=True, verbose_name=b'Phone number', blank=True)),
                 ('born_date', models.DateField(default=None, null=True, verbose_name=b'Born date', blank=True)),
-                ('email', models.EmailField(max_length=254, verbose_name=b'Email')),
+                ('last_connexion', models.DateTimeField(default=None, null=True, verbose_name=b'Date of last connexion', blank=True)),
                 ('years_seniority', models.IntegerField(default=0, verbose_name=b'Seniority')),
-                ('date_created', models.DateField(auto_now_add=True, verbose_name=b'Date of Birthday')),
             ],
         ),
         migrations.CreateModel(
@@ -61,9 +64,19 @@ class Migration(migrations.Migration):
             bases=('TasksManager.userprofile',),
         ),
         migrations.AddField(
+            model_name='developerworktask',
+            name='task',
+            field=models.ForeignKey(to='TasksManager.Task'),
+        ),
+        migrations.AddField(
             model_name='task',
-            name='app_user',
+            name='developer',
             field=models.ForeignKey(verbose_name=b'User', to='TasksManager.Developer'),
+        ),
+        migrations.AddField(
+            model_name='developerworktask',
+            name='developer',
+            field=models.ForeignKey(to='TasksManager.Developer'),
         ),
         migrations.AddField(
             model_name='developer',

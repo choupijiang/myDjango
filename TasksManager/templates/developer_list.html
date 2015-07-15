@@ -1,22 +1,53 @@
+{#{% extends "base.html" %}#}
+{#{% block title_html %}#}
+{#    Project list#}
+{#{% endblock %}#}
+{#{% block h1 %}#}
+{#    Project list#}
+{#{% endblock %}#}
+{#{% block article_content %}#}
+{#    <table>#}
+{#        <tr>#}
+{#            <th>Title</th>#}
+{#            <th>Description</th>#}
+{#            <th>Client name</th>#}
+{#        </tr>#}
+{#        {% for developer in object_list %}#}
+{#            <tr>#}
+{#                <td><a href="">{{ developer.name }}</a></td>#}
+{#                <td>{{ developer.login }}</td>#}
+{#                <td>{{ developer.supervisor }}</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#    </table>#}
+{#{% endblock %}#}
 {% extends "base.html" %}
 {% block title_html %}
-    Project list
+    Developer list
 {% endblock %}
 {% block h1 %}
-    Project list
+    Developer list
 {% endblock %}
 {% block article_content %}
     <table>
         <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Client name</th>
+            <td>Name</td>
+            <td>Login</td>
+            <td>Supervisor</td>
         </tr>
-        {% for developer in object_list %}
+        {% for dev in object_list %}
             <tr>
-                <td><a href="">{{ developer.name }}</a></td>
-                <td>{{ developer.login }}</td>
-                <td>{{ developer.supervisor }}</td>
+                <!-- The following line displays the __str__
+                method of the model. In this case it will display the username of
+                the developer -->
+                <td><a href="">{{ dev }}</a></td>
+                <!-- The following line displays the last_name of
+                the developer -->
+                <td>{{ dev.user_auth.last_name }}</td>
+                <!-- The following line displays the __str__
+                method of the Supervisor model. In this case it will display the
+                username of the supervisor -->
+                <td>{{ dev.supervisor }}</td>
             </tr>
         {% endfor %}
     </table>
