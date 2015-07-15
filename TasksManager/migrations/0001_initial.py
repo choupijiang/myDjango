@@ -2,11 +2,13 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('auth', '0006_require_contenttypes_0002'),
     ]
 
     operations = [
@@ -40,8 +42,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserProfile',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=50, verbose_name=b'Name', error_messages={b'required': b'You must type a name !', b'invalid': b'Wrong format.'})),
+                ('user_auth', models.OneToOneField(primary_key=True, default=b'zhangsh', serialize=False, to=settings.AUTH_USER_MODEL)),
                 ('phone', models.CharField(default=None, max_length=20, null=True, verbose_name=b'Phone number', blank=True)),
                 ('born_date', models.DateField(default=None, null=True, verbose_name=b'Born date', blank=True)),
                 ('last_connexion', models.DateTimeField(default=None, null=True, verbose_name=b'Date of last connexion', blank=True)),

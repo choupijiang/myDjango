@@ -13,6 +13,11 @@
     <span>Email : {{ object.email }}</span>
     <h3>Tasks</h3>
     <table>
+        <tr>
+            <td>title</td>
+            <td>importence</td>
+            <td>project</td>
+        </tr>
         {% for task in tasks_dev %}
         <tr>
             <td>{{ task.title }}</td>

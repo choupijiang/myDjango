@@ -22,8 +22,8 @@ error_name = {
 #         return  self.name
 
 class UserProfile(models.Model):
-    # user_auth = models.OneToOneField(User, primary_key=True)
-    name = models.CharField(max_length=50, verbose_name="Name", error_messages=error_name)
+    user_auth = models.OneToOneField(User, primary_key=True, default="zhangsh")
+    # name = models.CharField(max_length=50, verbose_name="Name", error_messages=error_name)
     phone = models.CharField(max_length=20, verbose_name="Phone number", null=True, default=None, blank=True)
     born_date = models.DateField(verbose_name="Born date", null=True, default=None, blank=True)
     last_connexion = models.DateTimeField(verbose_name="Date of last connexion", null=True, default=None, blank=True)
@@ -40,8 +40,8 @@ class Project(models.Model):
 
 class Supervisor(UserProfile):
     specialisation = models.CharField(max_length=50, verbose_name="Specialisation")
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.specialisation
 
 class Developer(UserProfile):
     supervisor = models.ForeignKey(Supervisor, verbose_name="Supervisor")

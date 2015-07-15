@@ -53,8 +53,7 @@ urlpatterns = [
     # # url (r'^task_detail_(?P<pk>\d+)$', DetailView.as_view(model=Task,
     # #                   template_name="task_detail.html"), name="task_detail"),
     # url (r'^task_detail_(?P<pk>\d+)$', 'TasksManager.views.task_detail.page', name="task_detail"),
-    url (r'^developer_detail_(?P<pk>\d+)$',
-         Developer_detail.as_view(), name="developer_detail"),
+    url (r'^developer_detail_(?P<pk>\d+)$', Developer_detail.as_view(), name="developer_detail"),
     # # url (r'^update_task_(?P<pk>\d+)$',
     # #      UpdateView.as_view(model=Task, template_name="update_task.html", success_url="index",
     # #                         fields=["title", "description", "importance", "project"]
