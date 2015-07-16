@@ -109,6 +109,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_URL = 'public_connection'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'myDjango/templates'),
